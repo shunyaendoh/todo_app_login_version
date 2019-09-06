@@ -14,10 +14,17 @@ class Todo
         $this->db_manager->connect();
     }
 
-    public function create($text)
+    public function create($task)
     {
         $stmt = $this->db_manager->dbh->prepare('INSERT INTO ' . $this->table . '(name) VALUES (?)');
-        $stmt->execute([$text]);
-        header('Location: index.php');
+        $stmt->execute([$task]);
+    }
+    public function getAll()
+    {
+        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+
+        return $results;
     }
 }

@@ -1,3 +1,14 @@
+<?php
+    require_once('./Models/Todo.php');
+    function h($s)
+{
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+  
+}
+
+    $todo = new Todo();
+    // var_dump($todo->getAll());
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,26 +55,23 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                    foreach($todo->getAll() as $content)
+                    { 
+                    ?>
                     <tr>
-                        <td>create new website</td>
-                        <td>2019/08/21</td>
+                        <td><?php echo h($content['name']) ?></td>
+                        <td><?php echo h((substr($content['due_date'], 0, 10))) ?></td>
                         <td>
                             <a class="text-success" href="edit.php">EDIT</a>
                         </td>
                         <td>
                             <a class="text-danger" href="delete.php">DELETE</a>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>go to club</td>
-                        <td>2019/10/21</td>
-                        <td>
-                            <a class="text-success" href="edit.php">EDIT</a>
-                        </td>
-                        <td>
-                            <a class="text-danger" href="delete.php">DELETE</a>
-                        </td>
-                    </tr>
+                    </tr>    
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>  
         </section>
