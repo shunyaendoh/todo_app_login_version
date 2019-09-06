@@ -1,6 +1,7 @@
 <?php
 
 require_once('config/dbconnect.php');
+// require_once('../index.php');
 
 class Todo
 {
@@ -26,5 +27,10 @@ class Todo
         $results = $stmt->fetchAll();
 
         return $results;
+    }
+    public function delete($num)
+    {
+        $stmt = $this->db_manager->dbh->prepare('DELETE FROM ' . $this->table . ' WHERE id=?');
+        $stmt->execute([$num]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
     require_once('./Models/Todo.php');
+    require_once('./delete.php');
     function h($s)
 {
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
@@ -56,21 +57,20 @@
                 </thead>
                 <tbody>
                     <?php 
-                    foreach($todo->getAll() as $content)
-                    { 
+                    foreach($todo->getAll() as $content) : 
                     ?>
                     <tr>
                         <td><?php echo h($content['name']) ?></td>
-                        <td><?php echo h((substr($content['due_date'], 0, 10))) ?></td>
+                        <td><?php echo h(substr($content['due_date'], 0, 10)) ?></td>
                         <td>
                             <a class="text-success" href="edit.php">EDIT</a>
                         </td>
                         <td>
-                            <a class="text-danger" href="delete.php">DELETE</a>
+                            <a class="text-danger" value="delete" href="delete.php?id=<?php echo($content['id']); ?>">DELETE</a>
                         </td>
                     </tr>    
                     <?php
-                    }
+                    endforeach;
                     ?>
                 </tbody>
             </table>  
