@@ -1,6 +1,6 @@
 <?php
     require_once('./Models/Todo.php');
-    require_once('./delete.php');
+    // require_once('./delete.php');
     function h($s)
 {
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');

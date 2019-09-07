@@ -1,11 +1,9 @@
 <?php
 require_once('./Models/Todo.php');
-require_once('index.php');
 
+$id = $_GET['id'];
+$todo = new Todo();
+$todo->delete($id);
+header('Location: index.php');
+exit;
 
-if (isset($_GET['id']))
-{
-    $todo->delete($_GET['id']);
-    header('Location: index.php');
-    exit;
-}
