@@ -1,3 +1,15 @@
+<?php
+require_once('./Models/Todo.php');
+function h($s)
+{
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+}
+
+$id = $_GET['id'];
+$todo = new Todo();
+$result = $todo->get($id);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,11 +38,30 @@
                 <div class="col-12 col-md-9 py-2">
                     <input type="text" name="task" class="form-control" placeholder="ADD TODO" value="">
                 </div>
-                <input type="hidden" name="id" value="">
+                <input type="hidden" name="id" value="<?php echo($id); ?>">
                 <div class="py-2 col-md-3 col-12">
                     <button type="submit" class="col-12 btn btn-primary btn-block">UPDATE</button>
                 </div>
             </form>
+        </section>
+
+        <section class="mt-5">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="bg-primary text-light">
+                        <th class=>TODO</th>
+                        <th>DUE DATE</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo h($result['name']) ?></td>
+                        <td><?php echo h(substr($result['due_date'], 0, 10)) ?></td>
+                    </tr>    
+                </tbody>
+            </table>  
         </section>
     </main>
     

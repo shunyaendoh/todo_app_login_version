@@ -29,7 +29,21 @@ class Todo
     }
     public function delete($num)
     {
-        $stmt = $this->db_manager->dbh->prepare('DELETE FROM ' . $this->table . ' WHERE id=?');
+        $stmt = $this->db_manager->dbh->prepare('DELETE FROM ' . $this->table . ' WHERE id = ?');
         $stmt->execute([$num]);
+    }
+    public function get($num)
+    {
+        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table . ' WHERE id = ?');
+        $stmt->execute([$num]);
+        $result = $stmt->fetch();
+
+        return $result;
+    }
+    public function update($task, $id)
+    {
+
+        $stmt = $this->db_manager->dbh->prepare('UPDATE ' . $this->table . ' SET name = ? WHERE id = ?');
+        $stmt->execute([$task, $id]);
     }
 }
