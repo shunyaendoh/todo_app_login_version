@@ -16,7 +16,9 @@
     <title>TODO APP</title>
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./assets/js/app.js" defer></script>
 </head>
 <body>
     <header class="px-5 bg-primary">
@@ -63,7 +65,7 @@
                             <a class="text-success" href="edit.php?id=<?php echo($content['id']); ?>">EDIT</a>
                         </td>
                         <td>
-                            <a class="text-danger" value="delete" href="delete.php?id=<?php echo($content['id']); ?>">DELETE</a>
+                            <a id="<?php echo($content['id']); ?>" class="delete_btn text-danger" value="" href="">DELETE</a>
                         </td>
                     </tr>    
                     <?php
@@ -73,7 +75,5 @@
             </table>  
         </section>
     </main>
-    
-    <script src="assets/js/app.js"></script>
 </body>
 </html>
