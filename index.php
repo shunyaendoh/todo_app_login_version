@@ -36,10 +36,10 @@
         <section>
             <form class="form-row" action="create.php" method="POST">
                 <div class="col-12 col-md-9 py-2">
-                    <input type="text" class="form-control" placeholder="ADD TODO" name="task">
+                    <input type="text" class="create-task form-control" placeholder="ADD TODO" name="task">
                 </div>
                 <div class="py-2 col-md-3 col-12">
-                    <button type="submit" class="col-12 btn btn-primary btn-block">ADD</button>
+                    <button type="submit" class="create-btn col-12 btn btn-primary btn-block">ADD</button>
                 </div>
             </form>
         </section>
@@ -58,14 +58,14 @@
                     <?php 
                     foreach($todo->getAll() as $content) : 
                     ?>
-                    <tr>
+                    <tr data-tr="<?php echo($content['id']); ?>">
                         <td><?php echo h($content['name']) ?></td>
                         <td><?php echo h(substr($content['due_date'], 0, 10)) ?></td>
                         <td>
                             <a class="text-success" href="edit.php?id=<?php echo($content['id']); ?>">EDIT</a>
                         </td>
                         <td>
-                            <a id="<?php echo($content['id']); ?>" class="delete_btn text-danger" value="" href="">DELETE</a>
+                            <a class="delete-btn text-danger" href="delete.php?id=<?php echo($content['id']); ?>" data-id="<?php echo($content['id']); ?>">DELETE</a>
                         </td>
                     </tr>    
                     <?php
