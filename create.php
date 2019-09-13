@@ -1,10 +1,12 @@
 <?php
+session_start();
 header("Content-type: application/json; charset=utf-8");
 require_once('./Models/Todo.php');
 
 $task = $_POST['task'];
 $todo = new Todo();
-$lastId = $todo->create($task);
+$lastUserId = $_SESSION['user']['id'];
+$lastId = $todo->create($task, $lastUserId);
 $newTask = $todo->get($lastId);
 $subDate = substr($newTask['due_date'],0,10);
 

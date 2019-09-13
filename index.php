@@ -1,5 +1,11 @@
 <?php
+    session_start();
     require_once('./Models/Todo.php');
+    if (!isset($_SESSION['user'])) {
+        header('Location: ./signup.html');
+    }
+    $user = $_SESSION['user'];
+    $lastUserId = $_SESSION['user']['id'];
     function h($s)
 {
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
@@ -26,8 +32,9 @@
             <a href="index.php" class="navbar-brand">TODO APP</a>
             <div class="justify-content-end">
                 <span class="text-light">
-                    SeedKun
+                    <?php echo h($user['username'] . 'さん');?>
                 </span>
+                <a class="btn btn-success" href="./logout.php">ログアウト</a>
             </div>
         </nav>
     </header>
@@ -56,7 +63,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                    foreach($todo->getAll() as $content) : 
+                    foreach($todo->getAll($lastUserId) as $content) : 
                     ?>
                     <tr data-tr="<?php echo($content['id']); ?>">
                         <td><?php echo h($content['name']) ?></td>

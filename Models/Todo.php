@@ -14,17 +14,17 @@ class Todo
         $this->db_manager->connect();
     }
 
-    public function create($task)
+    public function create($task, $userId)
     {
-        $stmt = $this->db_manager->dbh->prepare('INSERT INTO ' . $this->table . '(name) VALUES (?)');
-        $stmt->execute([$task]);
+        $stmt = $this->db_manager->dbh->prepare('INSERT INTO ' . $this->table . '(name, user_id) VALUES (?, ?)');
+        $stmt->execute([$task, $userId]);
 
         return $this->db_manager->dbh->lastInsertId();
     }
-    public function getAll()
+    public function getAll($lastUserId)
     {
-        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table);
-        $stmt->execute();
+        $stmt = $this->db_manager->dbh->prepare('SELECT * FROM ' . $this->table . ' WHERE user_id = ?');
+        $stmt->execute([$lastUserId]);
         $results = $stmt->fetchAll();
 
         return $results;

@@ -22,4 +22,5 @@ class User
         $result = $stmt->fetch();
         return $result;
     }
+
 }
