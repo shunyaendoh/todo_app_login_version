@@ -1,3 +1,10 @@
+* {
+    font-family: 'Kosugi Maru', sans-serif;
+}
+
+#sign {
+    margin-right: -0.5rem;
+}
 .none {
     display: none;
 }

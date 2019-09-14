@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('./Models/User.php');
 
 $username = $_POST['username'];
@@ -15,5 +16,7 @@ if (password_verify($password, $loginUser['password'])) {
     $_SESSION['user'] = $loginUser;
     header('Location: index.php');
 } else {
-    header('Location: ./login.html');
+    $error['login'] = 'uncorrect';
+    $_SESSION['login'] = $error['login'];
+    header('Location: ./login.php');
 }
