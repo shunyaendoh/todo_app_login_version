@@ -48,7 +48,7 @@ if (!empty($_POST)) {
         <input type="submit" value="登録">
     </form>
     <div class="text-center mt-2">
-        <a href="./login.php">ログイン</a>
+        <a href="./login.php">ログインはこちら</a>
     </div>
 </body>
 </html>

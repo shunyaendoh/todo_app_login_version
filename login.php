@@ -30,7 +30,7 @@ session_start();
     <input type="submit" value="送信">
   </form>
   <div class="text-center mt-2">
-    <a href="./signup.php">サインアップ</a>
+    <a href="./signup.php">サインアップはこちら</a>
   </div>
 </body>
 </html>
